@@ -13,8 +13,8 @@
 
 	<img  class="img-fluid" src="img/computer.png">
 	<h3 class="display-3">Sorry ! Something went wrong</h3>
-	<%= exception %>
-	<a href="index.jsp" class="btn primary-background btn-lg text-white mt-3"></a>
+        <br>
+	<a href="index.jsp" class="btn primary-background btn-lg text-white mt-3">Home</a>
 </div>
 	
 	

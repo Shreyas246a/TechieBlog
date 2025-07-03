@@ -2,9 +2,30 @@
 body {
 
 }
-
 .primary-background{
 	background:#2196f3!important;
 }
 .banner-background{
 	clip-path: polygon(0 0, 100% 0, 95% 96%, 25% 82%, 0 100%, 0% 30%);}
+
+.post-title{
+ 
+    font-weight: 100;
+    font-size: 35px;
+}
+.post-content{
+    font-weight: 100;
+    font-size: 25px;
+}
+.post-date{
+    font-style: italic;
+    font-weight: bold;
+}
+.post-user-info{
+    font-size:20px;
+    font-weight: 300;
+}
+.row-user{
+    border:1px solid black;
+    padding-top: 15px;
+}

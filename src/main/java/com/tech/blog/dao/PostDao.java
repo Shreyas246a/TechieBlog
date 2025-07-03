@@ -63,18 +63,19 @@ public class PostDao {
         List<Post> list = new ArrayList<>();
         try{
         
-            String q = "Select * from post";
+            String q = "Select * from post order by pid desc";
             Statement s = con.createStatement();
             ResultSet rs = s.executeQuery(q);
             while(rs.next()){
              int pid = rs.getInt("pid");
              String ptitle = rs.getString("pTitle");
              String pcode =  rs.getString("pcode");
+             String pcontent = rs.getString("pcontent");
              String ppic = rs.getString("ppic");
              Timestamp pdate = rs.getTimestamp("pdate");
              int cid = rs.getInt("cid");
              int userid = rs.getInt("userid");   
-             Post p = new Post(pid, ptitle, pcode, pcode, ppic, pdate, cid, userid);
+             Post p = new Post(pid, ptitle, pcontent, pcode, ppic, pdate, cid, userid);
              list.add(p);
             }
         
@@ -89,18 +90,19 @@ public class PostDao {
         List<Post> list = new ArrayList<>();
         try{
         
-            String q = "Select * from post where cid = ?";
+            String q = "Select * from post where cid = ? order by pid desc";
             PreparedStatement pstm = con.prepareStatement(q);
             pstm.setInt(1,cid );
             ResultSet rs = pstm.executeQuery();
             while(rs.next()){
              int pid = rs.getInt("pid");
+             String pcontent = rs.getString("pcontent");
              String ptitle = rs.getString("pTitle");
              String pcode =  rs.getString("pcode");
              String ppic = rs.getString("ppic");
              Timestamp pdate = rs.getTimestamp("pdate");
              int userid = rs.getInt("userid");   
-             Post p = new Post(pid, ptitle, pcode, pcode, ppic, pdate, cid, userid);
+             Post p = new Post(pid, ptitle, pcontent, pcode, ppic, pdate, cid, userid);
              list.add(p);
             }
         
@@ -109,6 +111,28 @@ public class PostDao {
         }
         return list;
     }
+     
+      public Post getPostsByPid(int pid){
     
-    
+        Post p = null;
+        try{
+            String q = "Select * from post where pid = ?";
+            PreparedStatement pstm = con.prepareStatement(q);
+            pstm.setInt(1,pid );
+            ResultSet rs = pstm.executeQuery();
+            while(rs.next()){
+             int cid = rs.getInt("cid");
+             String ptitle = rs.getString("pTitle");
+             String pcontent = rs.getString("pcontent");
+             String pcode =  rs.getString("pcode");
+             String ppic = rs.getString("ppic");
+             Timestamp pdate = rs.getTimestamp("pdate");
+             int userid = rs.getInt("userid");   
+             p = new Post(pid, ptitle, pcontent, pcode, ppic, pdate, cid, userid);
+            }
+        }catch(Exception e){
+          e.printStackTrace();
+        }
+          return p;
+    }
 }
